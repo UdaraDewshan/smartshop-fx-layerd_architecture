@@ -12,7 +12,6 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-
 public class DashboardController {
 
     @FXML

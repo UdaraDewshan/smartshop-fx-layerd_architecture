@@ -39,7 +39,7 @@ public class WelcomePageController {
         Stage stage1 = (Stage) btnGo.getScene().getWindow();
         stage1.close();
         stage.show();
-        stage.setTitle("Welcome Page");
+        stage.setTitle("Dashboard Page");
 
     }
 
