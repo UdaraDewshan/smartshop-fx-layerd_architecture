@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="654.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to bottom right, #1f1c2c, #928dab);" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerController">
+
+    <children>
+
+        <!-- Title -->
+        <Text fill="white" layoutX="270" layoutY="60" text="Customer Management">
+            <font>
+                <Font name="Arial Bold" size="32" />
+            </font>
+        </Text>
+
+        <!-- Input Card -->
+        <VBox layoutX="80" layoutY="90" prefWidth="740" spacing="12" style="-fx-background-color: #ffffff; -fx-background-radius: 16; -fx-padding: 20;">
+
+            <HBox alignment="CENTER" spacing="15">
+                <TextField fx:id="txtId" promptText="Customer ID" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtTitle" promptText="Title" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtName" promptText="Name" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtAddress" promptText="Address" style="-fx-background-radius: 8;" />
+            </HBox>
+
+            <HBox alignment="CENTER" spacing="15">
+                <TextField fx:id="txtDob" promptText="Date of Birth" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtSalary" promptText="Salary" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtProvince" promptText="Province" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtPostalCode" promptText="Postal Code" style="-fx-background-radius: 8;" />
+            </HBox>
+
+            <HBox alignment="CENTER" spacing="15">
+                <TextField fx:id="txtCity" alignment="CENTER" promptText="City" style="-fx-background-radius: 8;" />
+            </HBox>
+
+               <HBox alignment="CENTER" spacing="20">
+                <Button onAction="#btnAddOnAction" style="-fx-background-color:#4CAF50; -fx-text-fill:white; -fx-background-radius:8;" text="Add" />
+                <Button onAction="#btnUpdateOnAction" style="-fx-background-color:#2196F3; -fx-text-fill:white; -fx-background-radius:8;" text="Update" />
+                <Button onAction="#btnDeleteOnAction" style="-fx-background-color:#F44336; -fx-text-fill:white; -fx-background-radius:8;" text="Delete" />
+                <Button onAction="#btnClearOnAction" style="-fx-background-color:#9C27B0; -fx-text-fill:white; -fx-background-radius:8;" text="Clear" />
+            </HBox>
+
+        </VBox>
+
+        <!-- Table Section -->
+        <TableView fx:id="tblCustomer" layoutX="31.0" layoutY="295.0" prefHeight="290.0" prefWidth="854.0" style="-fx-background-radius:16; -fx-background-color:white;">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="70" text="ID" />
+                <TableColumn fx:id="colTitle" prefWidth="90" text="Title" />
+                <TableColumn fx:id="colName" prefWidth="120" text="Name" />
+                <TableColumn fx:id="colDob" prefWidth="100" text="DOB" />
+                <TableColumn fx:id="colSalary" prefWidth="100" text="Salary" />
+                <TableColumn fx:id="colAddress" prefWidth="120" text="Address" />
+                <TableColumn fx:id="colCity" prefWidth="80" text="City" />
+                <TableColumn fx:id="colProvince" prefWidth="80" text="Province" />
+                <TableColumn fx:id="colPostalCode" prefWidth="90" text="Postal Code" />
+            </columns>
+        </TableView>
+
+        <!-- Back Button -->
+        <JFXButton layoutX="423.0" layoutY="603.0" onAction="#btnBackAction" style="-fx-text-fill: white; -fx-font-size: 16; -fx-background-color: #300c95;" text="Back" />
+    </children>
+</AnchorPane>
