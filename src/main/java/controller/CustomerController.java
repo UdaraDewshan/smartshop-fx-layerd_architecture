@@ -85,20 +85,18 @@ public class CustomerController implements Initializable {
         loadtable();
 
         tblCustomer.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
-            if (newValue==null){
-                txtId.setText(newValue.getId());
-                txtSalary.setText(String.valueOf(newValue.getSalary()));
-                txtTitle.setText(newValue.getTitle());
+            if(newValue != null){
+                txtAddress.setText(newValue.getAddress());
+                txtCity.setText(newValue.getCity());
+                txtDob.setText(newValue.getDob());
                 txtName.setText(newValue.getName());
                 txtProvince.setText(newValue.getProvince());
-                txtAddress.setText(newValue.getAddress());
+                txtId.setText(newValue.getId());
                 txtPostalCode.setText(newValue.getPostalCode());
-                txtDob.setText(newValue.getDob());
-                txtCity.setText(newValue.getCity());
+                txtSalary.setText(String.valueOf(newValue.getSalary()));
+                txtTitle.setText(newValue.getTitle());
             }
         });
-
-
     }
 
     private void loadtable() {
