@@ -7,7 +7,6 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class CustomerDTO {
 
     private String id;

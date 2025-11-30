@@ -1,12 +1,23 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.dto.CustomerDTO;
+import service.CustomerService;
 
-public class CustomerController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CustomerController implements Initializable {
+
+    ObservableList<CustomerDTO> customerDTOS = FXCollections.observableArrayList();
 
     @FXML
     private TableColumn<?, ?> colAddress;
@@ -36,34 +47,64 @@ public class CustomerController {
     private TableColumn<?, ?> colTitle;
 
     @FXML
-    private TableView<?> tblCustomer;
+    private TableView<CustomerDTO> tblCustomer;
 
     @FXML
     private TextField txtAddress;
 
     @FXML
     private TextField txtCity;
-
     @FXML
     private TextField txtDob;
-
     @FXML
     private TextField txtId;
-
     @FXML
     private TextField txtName;
-
     @FXML
     private TextField txtPostalCode;
-
     @FXML
     private TextField txtProvince;
-
     @FXML
     private TextField txtSalary;
-
     @FXML
     private TextField txtTitle;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colDob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+        colPostalCode.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        colProvince.setCellValueFactory(new PropertyValueFactory<>("province"));
+        tblCustomer.setItems(customerDTOS);
+
+        loadtable();
+
+        tblCustomer.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (newValue==null){
+                txtId.setText(newValue.getId());
+                txtSalary.setText(String.valueOf(newValue.getSalary()));
+                txtTitle.setText(newValue.getTitle());
+                txtName.setText(newValue.getName());
+                txtProvince.setText(newValue.getProvince());
+                txtAddress.setText(newValue.getAddress());
+                txtPostalCode.setText(newValue.getPostalCode());
+                txtDob.setText(newValue.getDob());
+                txtCity.setText(newValue.getCity());
+            }
+        });
+
+
+    }
+
+    private void loadtable() {
+        CustomerService customerService = new CustomerService();
+        tblCustomer.setItems(customerService.getAllCustomers());
+    }
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
@@ -89,5 +130,6 @@ public class CustomerController {
     void btnUpdateOnAction(ActionEvent event) {
 
     }
+
 
 }
