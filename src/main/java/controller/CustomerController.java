@@ -1,23 +1,33 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import lombok.RequiredArgsConstructor;
 import model.dto.CustomerDTO;
 import service.CustomerService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
 
     ObservableList<CustomerDTO> customerDTOS = FXCollections.observableArrayList();
+
+    CustomerService customerService = new CustomerService();
+    @FXML
+    private JFXButton btnBack;
 
     @FXML
     private TableColumn<?, ?> colAddress;
@@ -100,23 +110,44 @@ public class CustomerController implements Initializable {
     }
 
     private void loadtable() {
-        CustomerService customerService = new CustomerService();
         tblCustomer.setItems(customerService.getAllCustomers());
     }
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
+        String custID = txtId.getText();
+        String title = txtTitle.getText();
+        String name = txtName.getText();
+        String dob = txtDob.getText();
+        double salary = Double.parseDouble(txtSalary.getText());
+        String address = txtAddress.getText();
+        String city = txtCity.getText();
+        String province = txtProvince.getText();
+        String postalCode = txtPostalCode.getText();
+
+        customerService.addCustomer(custID,title,name,dob,salary,address,city,province,postalCode);
+        loadtable();
+        clearTest();
 
     }
 
     @FXML
     void btnBackAction(ActionEvent event) {
-
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) btnBack.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
-
+        clearTest();
     }
 
     @FXML
@@ -127,6 +158,18 @@ public class CustomerController implements Initializable {
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
 
+    }
+
+    public void clearTest(){
+        txtAddress.setText("");
+        txtCity.setText("");
+        txtDob.setText("");
+        txtName.setText("");
+        txtProvince.setText("");
+        txtId.setText("");
+        txtPostalCode.setText("");
+        txtSalary.setText("");
+        txtTitle.setText("");
     }
 
 

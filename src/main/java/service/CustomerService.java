@@ -35,4 +35,12 @@ public class CustomerService {
         }
         return customerDTOS;
     }
+
+    public void addCustomer(String custID, String title, String name, String dob, double salary, String address, String city, String province, String postalCode) {
+        try {
+            customerRepository.add(custID,title,name,dob,salary,address,city,province,postalCode);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

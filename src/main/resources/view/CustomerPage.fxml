@@ -68,6 +68,6 @@
         </TableView>
 
         <!-- Back Button -->
-        <JFXButton layoutX="423.0" layoutY="603.0" onAction="#btnBackAction" style="-fx-text-fill: white; -fx-font-size: 16; -fx-background-color: #300c95;" text="Back" />
+        <JFXButton fx:id="btnBack" layoutX="423.0" layoutY="603.0" onAction="#btnBackAction" style="-fx-text-fill: white; -fx-font-size: 16; -fx-background-color: #300c95;" text="Back" />
     </children>
 </AnchorPane>
