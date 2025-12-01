@@ -13,9 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import lombok.RequiredArgsConstructor;
 import model.dto.CustomerDTO;
-import service.CustomerService;
+import service.CustomerServiceImpl;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,43 +24,31 @@ public class CustomerController implements Initializable {
 
     ObservableList<CustomerDTO> customerDTOS = FXCollections.observableArrayList();
 
-    CustomerService customerService = new CustomerService();
+    CustomerServiceImpl customerService = new CustomerServiceImpl();
     @FXML
     private JFXButton btnBack;
-
     @FXML
     private TableColumn<?, ?> colAddress;
-
     @FXML
     private TableColumn<?, ?> colCity;
-
     @FXML
     private TableColumn<?, ?> colDob;
-
     @FXML
     private TableColumn<?, ?> colId;
-
     @FXML
     private TableColumn<?, ?> colName;
-
     @FXML
     private TableColumn<?, ?> colPostalCode;
-
     @FXML
     private TableColumn<?, ?> colProvince;
-
     @FXML
     private TableColumn<?, ?> colSalary;
-
     @FXML
     private TableColumn<?, ?> colTitle;
-
     @FXML
     private TableView<CustomerDTO> tblCustomer;
-
     @FXML
     private TextField txtAddress;
-
     @FXML
     private TextField txtCity;
     @FXML
@@ -128,7 +115,6 @@ public class CustomerController implements Initializable {
         customerService.addCustomer(custID,title,name,dob,salary,address,city,province,postalCode);
         loadtable();
         clearTest();
-
     }
 
     @FXML
