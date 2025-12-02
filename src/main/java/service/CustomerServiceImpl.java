@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import model.dto.CustomerDTO;
 import repository.CustomerRepositoryImpl;
 
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -32,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
         return customerDTOS;
     }
@@ -42,14 +43,18 @@ public class CustomerServiceImpl implements CustomerService {
         try {
             customerRepository.add(custID,title,name,dob,salary,address,city,province,postalCode);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
     }
 
 
     @Override
     public void deleteCustomer(String custId) {
-        
+        try {
+            customerRepository.deleteCustomer(custId);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
     }
 
     @Override

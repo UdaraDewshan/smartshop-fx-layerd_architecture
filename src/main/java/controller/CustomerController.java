@@ -138,7 +138,9 @@ public class CustomerController implements Initializable {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-
+        customerService.deleteCustomer(txtId.getText());
+        loadtable();
+        clearTest();
     }
 
     @FXML

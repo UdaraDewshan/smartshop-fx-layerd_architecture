@@ -36,7 +36,15 @@ public class CustomerRepositoryImpl implements CusromerRepository{
 
     @Override
     public void deleteCustomer(String custId) throws SQLException {
-
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("Delete from customer where CustID=?");
+        preparedStatement.setString(1,custId);
+        int i = preparedStatement.executeUpdate();
+        if (i>0){
+            JOptionPane.showMessageDialog(null, "Delete Successfully!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Delete Unsuccessful!");
+        }
     }
 
     @Override
