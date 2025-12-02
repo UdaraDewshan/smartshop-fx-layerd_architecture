@@ -59,8 +59,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void updateCustomer(String custID, String title, String name, String dob, double salary, String address, String city, String province, String postalCode) {
-
+        try {
+            customerRepository.updateCustomer(custID,title,name,dob,salary,address,city,province,postalCode);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
     }
+
 
 
 }

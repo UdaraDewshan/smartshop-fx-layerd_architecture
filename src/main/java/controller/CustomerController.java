@@ -145,7 +145,9 @@ public class CustomerController implements Initializable {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-
+        customerService.updateCustomer(txtId.getText(),txtTitle.getText(),txtName.getText(),txtDob.getText(), Double.parseDouble(txtSalary.getText()),txtAddress.getText(),txtCity.getText(),txtProvince.getText(),txtPostalCode.getText());
+        loadtable();
+        clearTest();
     }
 
     public void clearTest(){
@@ -159,6 +161,5 @@ public class CustomerController implements Initializable {
         txtSalary.setText("");
         txtTitle.setText("");
     }
-
 
 }
