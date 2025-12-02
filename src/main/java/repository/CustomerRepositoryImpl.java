@@ -8,14 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CustomerRepository {
+public class CustomerRepositoryImpl implements CusromerRepository{
 
-    public ResultSet getAllCustomers() throws SQLException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("Select * From Customer");
-        return preparedStatement.executeQuery();
-    }
-
+    @Override
     public void add(String custID, String title, String name, String dob, double salary, String address, String city, String province, String postalCode) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO customer VALUES(?,?,?,?,?,?,?,?,?)");
@@ -37,5 +32,22 @@ public class CustomerRepository {
         } else {
             JOptionPane.showMessageDialog(null, "Add Unsuccessful!");
         }
+    }
+
+    @Override
+    public void deleteCustomer(String custId) throws SQLException {
+
+    }
+
+    @Override
+    public void updateCustomer(String custID, String title, String name, String dob, double salary, String address, String city, String province, String postalCode) throws SQLException {
+
+    }
+
+    @Override
+    public ResultSet getAllCustomers() throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("Select * From Customer");
+        return preparedStatement.executeQuery();
     }
 }

@@ -2,14 +2,14 @@ package service;
 
 import javafx.collections.ObservableList;
 import model.dto.CustomerDTO;
-import repository.CustomerRepository;
+import repository.CustomerRepositoryImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CustomerServiceImpl implements CustomerService {
 
-    CustomerRepository customerRepository = new CustomerRepository();
+    CustomerRepositoryImpl customerRepository = new CustomerRepositoryImpl();
 
     @Override
     public ObservableList<CustomerDTO> getAllCustomers() {
@@ -49,7 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(String custId) {
-
+        
     }
 
     @Override
