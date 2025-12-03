@@ -1,8 +1,9 @@
-package service;
+package service.impl;
 
 import javafx.collections.ObservableList;
 import model.dto.CustomerDTO;
-import repository.CustomerRepositoryImpl;
+import repository.impl.CustomerRepositoryImpl;
+import service.CustomerService;
 
 import javax.swing.*;
 import java.sql.ResultSet;

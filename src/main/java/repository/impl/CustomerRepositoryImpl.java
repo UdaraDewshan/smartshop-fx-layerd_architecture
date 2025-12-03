@@ -1,6 +1,7 @@
-package repository;
+package repository.impl;
 
 import db.DBConnection;
+import repository.CusromerRepository;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -8,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CustomerRepositoryImpl implements CusromerRepository{
+public class CustomerRepositoryImpl implements CusromerRepository {
 
     @Override
     public void add(String custID, String title, String name, String dob, double salary, String address, String city, String province, String postalCode) throws SQLException {

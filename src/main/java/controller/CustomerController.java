@@ -14,55 +14,83 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.dto.CustomerDTO;
-import service.CustomerServiceImpl;
+import service.impl.CustomerServiceImpl;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
-
     ObservableList<CustomerDTO> customerDTOS = FXCollections.observableArrayList();
 
     CustomerServiceImpl customerService = new CustomerServiceImpl();
+
     @FXML
     private JFXButton btnBack;
+
     @FXML
     private TableColumn<?, ?> colAddress;
+
     @FXML
     private TableColumn<?, ?> colCity;
+
     @FXML
     private TableColumn<?, ?> colDob;
+
     @FXML
     private TableColumn<?, ?> colId;
+
     @FXML
     private TableColumn<?, ?> colName;
+
     @FXML
     private TableColumn<?, ?> colPostalCode;
+
     @FXML
     private TableColumn<?, ?> colProvince;
+
     @FXML
     private TableColumn<?, ?> colSalary;
+
     @FXML
     private TableColumn<?, ?> colTitle;
+
+    @FXML
+    private JFXButton itemManagement;
+
+    @FXML
+    private JFXButton orderDetail;
+
+    @FXML
+    private JFXButton orderManagement;
+
     @FXML
     private TableView<CustomerDTO> tblCustomer;
+
     @FXML
     private TextField txtAddress;
+
     @FXML
     private TextField txtCity;
+
     @FXML
     private TextField txtDob;
+
     @FXML
     private TextField txtId;
+
     @FXML
     private TextField txtName;
+
     @FXML
     private TextField txtPostalCode;
+
     @FXML
     private TextField txtProvince;
+
     @FXML
     private TextField txtSalary;
+
     @FXML
     private TextField txtTitle;
 
@@ -82,7 +110,7 @@ public class CustomerController implements Initializable {
         loadtable();
 
         tblCustomer.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
-            if(newValue != null){
+            if (newValue != null) {
                 txtAddress.setText(newValue.getAddress());
                 txtCity.setText(newValue.getCity());
                 txtDob.setText(newValue.getDob());
@@ -95,11 +123,6 @@ public class CustomerController implements Initializable {
             }
         });
     }
-
-    private void loadtable() {
-        tblCustomer.setItems(customerService.getAllCustomers());
-    }
-
     @FXML
     void btnAddOnAction(ActionEvent event) {
         String custID = txtId.getText();
@@ -138,9 +161,7 @@ public class CustomerController implements Initializable {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        customerService.deleteCustomer(txtId.getText());
-        loadtable();
-        clearTest();
+
     }
 
     @FXML
@@ -150,7 +171,26 @@ public class CustomerController implements Initializable {
         clearTest();
     }
 
-    public void clearTest(){
+    @FXML
+    void itemManagementAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void orderDetailAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void orderManagementAction(ActionEvent event) {
+
+    }
+
+    private void loadtable() {
+        tblCustomer.setItems(customerService.getAllCustomers());
+    }
+
+    public void clearTest() {
         txtAddress.setText("");
         txtCity.setText("");
         txtDob.setText("");
