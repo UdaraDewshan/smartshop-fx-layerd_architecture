@@ -63,7 +63,7 @@ public class DashboardController {
     @FXML
     void btnItemAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/ItemPage.fxml"))));
         Stage stage1 = (Stage) btnItem.getScene().getWindow();
         stage1.close();
         stage.show();
