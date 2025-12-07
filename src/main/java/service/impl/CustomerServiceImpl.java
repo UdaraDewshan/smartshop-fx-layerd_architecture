@@ -32,8 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
                 );
                 customerDTOS.add(customerDTO);
             }
-
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             JOptionPane.showMessageDialog(null,e.getMessage());
         }
         return customerDTOS;

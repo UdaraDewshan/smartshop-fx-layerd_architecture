@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import model.dto.CustomerDTO;
 import service.impl.CustomerServiceImpl;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,13 +57,13 @@ public class CustomerController implements Initializable {
     private TableColumn<?, ?> colTitle;
 
     @FXML
-    private JFXButton itemManagement;
+    private JFXButton btnItemManagement;
 
     @FXML
-    private JFXButton orderDetail;
+    private JFXButton btnOrderDdetails;
 
     @FXML
-    private JFXButton orderManagement;
+    private JFXButton btnOrderManagemrnt;
 
     @FXML
     private TableView<CustomerDTO> tblCustomer;
@@ -150,7 +151,7 @@ public class CustomerController implements Initializable {
             stage.setTitle("Dashboard");
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 
@@ -161,7 +162,9 @@ public class CustomerController implements Initializable {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-
+        customerService.deleteCustomer(txtId.getText());
+        loadtable();
+        clearTest();
     }
 
     @FXML
@@ -169,21 +172,6 @@ public class CustomerController implements Initializable {
         customerService.updateCustomer(txtId.getText(),txtTitle.getText(),txtName.getText(),txtDob.getText(), Double.parseDouble(txtSalary.getText()),txtAddress.getText(),txtCity.getText(),txtProvince.getText(),txtPostalCode.getText());
         loadtable();
         clearTest();
-    }
-
-    @FXML
-    void itemManagementAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void orderDetailAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void orderManagementAction(ActionEvent event) {
-
     }
 
     private void loadtable() {
@@ -202,4 +190,42 @@ public class CustomerController implements Initializable {
         txtTitle.setText("");
     }
 
+    public void btnItemManagementAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ItemPage.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) btnBack.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Item Management");
+            stage.show();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+    public void btnOrderManagemrntAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) btnBack.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Order Management");
+            stage.show();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+    public void btnOrderDdetailsAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) btnBack.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("order Detail Management");
+            stage.show();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
 }
