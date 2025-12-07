@@ -37,4 +37,21 @@ public class ItemRepositoryImpl implements ItemRepository{
         }
 
     }
+
+    public void deleteItemDetails(String itemCode) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("Delete from item where ItemCode=?");
+            preparedStatement.setString(1,itemCode);
+            int i = preparedStatement.executeUpdate();
+            if (i>0){
+                JOptionPane.showMessageDialog(null, "Delete Successfully!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Delete Unsuccessful!");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+
+    }
 }

@@ -27,7 +27,7 @@ public class ItemServiseImpl implements ItemServise{
 
     @Override
     public void deleteItemDetails(String itemCode) {
-
+        itemRepository.deleteItemDetails(itemCode);
     }
 
     @Override

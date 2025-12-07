@@ -130,7 +130,8 @@ public class ItemController implements Initializable {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-
+        itemServise.deleteItemDetails(txtId.getText());
+        loadtable();
     }
 
     @FXML
