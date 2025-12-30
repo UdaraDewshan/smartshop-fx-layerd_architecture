@@ -1,0 +1,27 @@
+/* MAIN CARD BUTTON STYLE */
+.card-button {
+    -fx-background-color: white;
+    -fx-text-fill: #0052CC;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.2) , 8 , 0 , 0 , 2 );
+    -fx-border-radius: 20;
+    -fx-border-width: 0;
+}
+
+/* HOVER EFFECT */
+.card-button:hover {
+    -fx-background-color: #ffffffcc;
+    -fx-text-fill: #003d99;
+}
+
+/* PRESSED EFFECT */
+.card-button:pressed {
+    -fx-background-color: #e0e0e0;
+    -fx-text-fill: #002b73;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}

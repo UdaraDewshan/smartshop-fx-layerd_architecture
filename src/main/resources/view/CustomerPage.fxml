@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="740.0" prefWidth="990.0" style="-fx-background-color: linear-gradient(to bottom right, #1f1c2c, #928dab);" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerController">
+
+    <children>
+
+        <!-- Title -->
+        <Text fill="white" layoutX="318.0" layoutY="64.0" text="Customer Management">
+            <font>
+                <Font name="Arial Bold" size="32" />
+            </font>
+        </Text>
+
+        <!-- Input Card -->
+        <VBox layoutX="76.0" layoutY="90.0" prefHeight="179.0" prefWidth="838.0" spacing="12" style="-fx-background-color: #ffffff; -fx-background-radius: 16; -fx-padding: 20;">
+
+            <HBox alignment="CENTER" spacing="15">
+                <TextField fx:id="txtId" prefHeight="29.0" prefWidth="171.0" promptText="Customer ID" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtTitle" prefHeight="26.0" prefWidth="168.0" promptText="Title" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtName" prefHeight="26.0" prefWidth="167.0" promptText="Name" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtAddress" prefHeight="34.0" prefWidth="180.0" promptText="Address" style="-fx-background-radius: 8;" />
+            </HBox>
+
+            <HBox alignment="CENTER" spacing="15">
+                <TextField fx:id="txtDob" prefHeight="30.0" prefWidth="181.0" promptText="Date of Birth" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtSalary" prefHeight="29.0" prefWidth="182.0" promptText="Salary" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtProvince" prefHeight="30.0" prefWidth="182.0" promptText="Province" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtPostalCode" prefHeight="33.0" prefWidth="186.0" promptText="Postal Code" style="-fx-background-radius: 8;" />
+            </HBox>
+
+            <HBox alignment="CENTER" spacing="15">
+                <TextField fx:id="txtCity" alignment="CENTER" prefHeight="35.0" prefWidth="193.0" promptText="City" style="-fx-background-radius: 8;" />
+            </HBox>
+
+               <HBox alignment="CENTER" spacing="20">
+                <Button onAction="#btnAddOnAction" prefHeight="27.0" prefWidth="63.0" style="-fx-background-color:#4CAF50; -fx-text-fill:white; -fx-background-radius:8;" text="Add" />
+                <Button onAction="#btnUpdateOnAction" prefHeight="29.0" prefWidth="70.0" style="-fx-background-color:#2196F3; -fx-text-fill:white; -fx-background-radius:8;" text="Update" />
+                <Button onAction="#btnDeleteOnAction" prefHeight="28.0" prefWidth="66.0" style="-fx-background-color:#F44336; -fx-text-fill:white; -fx-background-radius:8;" text="Delete" />
+                <Button onAction="#btnClearOnAction" prefHeight="29.0" prefWidth="59.0" style="-fx-background-color:#9C27B0; -fx-text-fill:white; -fx-background-radius:8;" text="Clear" />
+            </HBox>
+
+        </VBox>
+
+        <!-- Table Section -->
+        <TableView fx:id="tblCustomer" layoutX="43.0" layoutY="295.0" prefHeight="306.0" prefWidth="910.0" style="-fx-background-radius:16; -fx-background-color:white;">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="70" text="ID" />
+                <TableColumn fx:id="colTitle" prefWidth="90" text="Title" />
+                <TableColumn fx:id="colName" prefWidth="120" text="Name" />
+                <TableColumn fx:id="colDob" prefWidth="100" text="DOB" />
+                <TableColumn fx:id="colSalary" prefWidth="122.4000244140625" text="Salary" />
+                <TableColumn fx:id="colAddress" prefWidth="121.5999755859375" text="Address" />
+                <TableColumn fx:id="colCity" prefWidth="92.0" text="City" />
+                <TableColumn fx:id="colProvince" prefWidth="83.199951171875" text="Province" />
+                <TableColumn fx:id="colPostalCode" prefWidth="109.5999755859375" text="Postal Code" />
+            </columns>
+        </TableView>
+        <!-- POS Bottom Navigation Bar -->
+        <!-- POS Bottom Navigation Bar (Pure JavaFX, No Icons) -->
+        <HBox alignment="CENTER" layoutX="43.0" layoutY="631.0" prefHeight="57.0" prefWidth="903.0" spacing="25" style="-fx-background-color: #101010; -fx-padding: 15; -fx-background-radius: 16;">
+
+            <!-- Items -->
+            <JFXButton fx:id="btnItemManagement" onAction="#btnItemManagementAction" prefHeight="70" prefWidth="160" style="-fx-background-color: #1f1f1f; -fx-text-fill: white;                       -fx-font-size: 18; -fx-background-radius: 12;" text="Items">
+                <font>
+                    <Font name="System Bold" size="18" />
+                </font>
+            </JFXButton>
+
+            <!-- Orders -->
+            <JFXButton fx:id="btnOrderManagemrnt" onAction="#btnOrderManagemrntAction" prefHeight="70" prefWidth="160" style="-fx-background-color: #1f1f1f; -fx-text-fill: white;                       -fx-font-size: 18; -fx-background-radius: 12;" text="Orders">
+                <font>
+                    <Font name="System Bold" size="18" />
+                </font>
+            </JFXButton>
+
+            <!-- Order Details -->
+            <JFXButton fx:id="btnOrderDdetails" onAction="#btnOrderDdetailsAction" prefHeight="70" prefWidth="180" style="-fx-background-color: #1f1f1f; -fx-text-fill: white;                       -fx-font-size: 18; -fx-background-radius: 12;" text="Order Details">
+                <font>
+                    <Font name="System Bold" size="18" />
+                </font>
+            </JFXButton>
+
+            <!-- Back -->
+            <JFXButton fx:id="btnBack" onAction="#btnBackAction" prefHeight="70" prefWidth="120" style="-fx-background-color: #300c95; -fx-text-fill: white;                       -fx-font-size: 18; -fx-background-radius: 12;" text="Back">
+                <font>
+                    <Font name="System Bold" size="18" />
+                </font>
+            </JFXButton>
+
+        </HBox>
+
+
+    </children>
+</AnchorPane>
