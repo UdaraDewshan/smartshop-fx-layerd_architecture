@@ -26,7 +26,7 @@
         <VBox layoutX="76.0" layoutY="90.0" prefHeight="179.0" prefWidth="838.0" spacing="12" style="-fx-background-color: #ffffff; -fx-background-radius: 16; -fx-padding: 20;">
 
             <HBox alignment="CENTER" spacing="15">
-                <TextField fx:id="txtId" prefHeight="29.0" prefWidth="171.0" promptText="Customer ID" style="-fx-background-radius: 8;" />
+                <TextField fx:id="txtId" onAction="#txtIdOnAction" prefHeight="29.0" prefWidth="171.0" promptText="Customer ID" style="-fx-background-radius: 8;" />
                 <TextField fx:id="txtTitle" prefHeight="26.0" prefWidth="168.0" promptText="Title" style="-fx-background-radius: 8;" />
                 <TextField fx:id="txtName" prefHeight="26.0" prefWidth="167.0" promptText="Name" style="-fx-background-radius: 8;" />
                 <TextField fx:id="txtAddress" prefHeight="34.0" prefWidth="180.0" promptText="Address" style="-fx-background-radius: 8;" />
@@ -78,14 +78,14 @@
             </JFXButton>
 
             <!-- Orders -->
-            <JFXButton fx:id="btnOrderManagemrnt" onAction="#btnOrderManagemrntAction" prefHeight="70" prefWidth="160" style="-fx-background-color: #1f1f1f; -fx-text-fill: white;                       -fx-font-size: 18; -fx-background-radius: 12;" text="Orders">
+            <JFXButton fx:id="btnOrderManagement" onAction="#btnOrderManagementAction" prefHeight="70" prefWidth="160" style="-fx-background-color: #1f1f1f; -fx-text-fill: white;                       -fx-font-size: 18; -fx-background-radius: 12;" text="Orders">
                 <font>
                     <Font name="System Bold" size="18" />
                 </font>
             </JFXButton>
 
             <!-- Order Details -->
-            <JFXButton fx:id="btnOrderDdetails" onAction="#btnOrderDdetailsAction" prefHeight="70" prefWidth="180" style="-fx-background-color: #1f1f1f; -fx-text-fill: white;                       -fx-font-size: 18; -fx-background-radius: 12;" text="Order Details">
+            <JFXButton fx:id="btnOrderDetails" onAction="#btnOrderDetailsAction" prefHeight="70" prefWidth="180" style="-fx-background-color: #1f1f1f; -fx-text-fill: white;                       -fx-font-size: 18; -fx-background-radius: 12;" text="Order Details">
                 <font>
                     <Font name="System Bold" size="18" />
                 </font>

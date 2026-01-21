@@ -39,6 +39,15 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public CustomerDTO searchCustomer(String id) {
+        try {
+            return customerRepository.searchCustomer(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void addCustomer(String custID, String title, String name, String dob, double salary, String address, String city, String province, String postalCode) {
         try {
             customerRepository.add(custID,title,name,dob,salary,address,city,province,postalCode);
