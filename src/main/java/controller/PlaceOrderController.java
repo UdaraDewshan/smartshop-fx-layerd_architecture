@@ -2,14 +2,18 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.*;
+import model.dto.CustomerDTO;
+import model.dto.ItemDTO;
+import service.CustomerService;
+import service.ItemServise;
+import service.impl.CustomerServiceImpl;
+import service.impl.ItemServiceImpl;
 
 public class PlaceOrderController {
+
+    ItemServise itemServise = new ItemServiceImpl();
+    CustomerService customerService = new CustomerServiceImpl();
 
     @FXML
     private Button btnAddToCart;
@@ -78,12 +82,25 @@ public class PlaceOrderController {
     }
 
     @FXML
-    void txtCustomerIDAction(KeyEvent event) {
-
+    void txtCustomerIDAction(ActionEvent event) {
+        CustomerDTO customerDTO = customerService.searchCustomer(txtCustomerID.getText());
+        if (customerDTO != null){
+            txtCustomerName.setText(customerDTO.getName());
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Customer Not Found!").show();
+        }
     }
 
     @FXML
-    void txtItemCodeOnAction(KeyEvent event) {
+    void txtItemCodeOnAction(ActionEvent event) {
+        ItemDTO itemDTO = itemServise.searchItem(txtItemCode.getText());
+        if(itemDTO != null){
+                txtItemDescription.setText(itemDTO.getDescription());
+                txtPrice.setText(String.valueOf(itemDTO.getUnitPrice()));
+
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Item Not Found!").show();
+        }
 
     }
 

@@ -84,7 +84,7 @@
                     </rowConstraints>
                     <children>
                         <Label text="Customer ID :" />
-                        <TextField fx:id="txtCustomerID" onKeyPressed="#txtCustomerIDAction" promptText="C001" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtCustomerID" onAction="#txtCustomerIDAction" promptText="C001" GridPane.columnIndex="1" />
                         <Label text="Name :" GridPane.rowIndex="1" />
                         <TextField fx:id="txtCustomerName" promptText="John Doe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                     </children>
@@ -110,7 +110,7 @@
                     </rowConstraints>
                     <children>
                         <Label text="Item Code :" />
-                        <TextField fx:id="txtItemCode" onKeyPressed="#txtItemCodeOnAction" promptText="I-001" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtItemCode" onAction="#txtItemCodeOnAction" promptText="I-001" GridPane.columnIndex="1" />
                         <Label text="Description :" GridPane.rowIndex="1" />
                         <TextField fx:id="txtItemDescription" promptText="Item Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="Unit Price :" GridPane.rowIndex="2" />
