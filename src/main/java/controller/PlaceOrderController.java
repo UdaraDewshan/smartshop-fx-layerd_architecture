@@ -1,19 +1,25 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import model.dto.CartItem;
 import model.dto.CustomerDTO;
 import model.dto.ItemDTO;
-import service.CustomerService;
-import service.ItemServise;
-import service.impl.CustomerServiceImpl;
-import service.impl.ItemServiceImpl;
+import service.impl.PlaceOrderServiceImpl;
 
-public class PlaceOrderController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    ItemServise itemServise = new ItemServiceImpl();
-    CustomerService customerService = new CustomerServiceImpl();
+public class PlaceOrderController implements Initializable {
 
     @FXML
     private Button btnAddToCart;
@@ -46,7 +52,7 @@ public class PlaceOrderController {
     private Label lblNetPrice;
 
     @FXML
-    private TableView<?> tblPlaceOrder;
+    private TableView<CartItem> tblPlaceOrder;
 
     @FXML
     private TextField txtCustomerID;
@@ -67,13 +73,53 @@ public class PlaceOrderController {
     private TextField txtPrice;
 
     @FXML
-    void btnAddToCartAction(ActionEvent event) {
+    private TextField txtQty;
 
+    PlaceOrderServiceImpl placeOrderService = new PlaceOrderServiceImpl();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colItemCode.setCellValueFactory(new PropertyValueFactory<>("itemCode"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        colDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+    }
+
+    ObservableList<CartItem> cartItems = FXCollections.observableArrayList();
+    @FXML
+    void btnAddToCartAction(ActionEvent event) {
+        CartItem cartItem = new CartItem(
+                txtItemCode.getText(),
+                txtItemDescription.getText(),
+                Integer.parseInt(txtQty.getText()),
+                Double.parseDouble(txtPrice.getText()),
+                Double.parseDouble(txtDiscount.getText()),
+                (Integer.parseInt(txtQty.getText()) * Double.parseDouble(txtPrice.getText())) - Double.parseDouble(txtDiscount.getText())
+        );
+        cartItems.add(cartItem);
+        clearText();
+        tblPlaceOrder.setItems(cartItems);
+        calculateNetTotal();
+    }
+
+    private void calculateNetTotal() {
+        double netTotal = 0;
+        for (CartItem item : cartItems) {
+            netTotal += item.getTotal();
+        }
+        lblNetPrice.setText(String.valueOf(netTotal));
     }
 
     @FXML
-    void btnBackAction(ActionEvent event) {
-
+    void btnBackAction(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Dashboard.fxml"))));
+        Stage stage1 = (Stage) btnBack.getScene().getWindow();
+        stage1.close();
+        stage.show();
+        stage.setTitle("Dashboard");
     }
 
     @FXML
@@ -83,7 +129,8 @@ public class PlaceOrderController {
 
     @FXML
     void txtCustomerIDAction(ActionEvent event) {
-        CustomerDTO customerDTO = customerService.searchCustomer(txtCustomerID.getText());
+
+        CustomerDTO customerDTO = placeOrderService.getCustomer(txtCustomerID.getText());
         if (customerDTO != null){
             txtCustomerName.setText(customerDTO.getName());
         }else {
@@ -93,15 +140,26 @@ public class PlaceOrderController {
 
     @FXML
     void txtItemCodeOnAction(ActionEvent event) {
-        ItemDTO itemDTO = itemServise.searchItem(txtItemCode.getText());
+        ItemDTO itemDTO = placeOrderService.getItem(txtItemCode.getText());
         if(itemDTO != null){
-                txtItemDescription.setText(itemDTO.getDescription());
-                txtPrice.setText(String.valueOf(itemDTO.getUnitPrice()));
+            txtItemDescription.setText(itemDTO.getDescription());
+            txtPrice.setText(String.valueOf(itemDTO.getUnitPrice()));
 
         }else {
             new Alert(Alert.AlertType.ERROR, "Item Not Found!").show();
         }
 
     }
+
+    void clearText(){
+        txtCustomerID.setText("");
+        txtCustomerName.setText("");
+        txtItemCode.setText("");
+        txtItemDescription.setText("");
+        txtPrice.setText("");
+        txtQty.setText("");
+        txtDiscount.setText("");
+    }
+
 
 }
