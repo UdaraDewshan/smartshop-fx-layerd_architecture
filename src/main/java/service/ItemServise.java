@@ -8,4 +8,5 @@ public interface ItemServise {
     public void deleteItemDetails(String itemCode);
     public void updateItemDetails(String itemCode, String description, String packSize, double unitPrice, int qtyOnHand);
     public ObservableList<ItemDTO> getAllItemDetails();
+    public ItemDTO searchItem(String id);
 }

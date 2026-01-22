@@ -21,7 +21,7 @@ public class DashboardController {
     @FXML
     private Button btnOrder;
     @FXML
-    private Button btnOrderDetail;
+    private Button btnPlaceOrder;
     @FXML
     private StackPane cardCustomer;
     @FXML
@@ -81,10 +81,10 @@ public class DashboardController {
     }
 
     @FXML
-    void btnOrderDetailAction(ActionEvent event) throws IOException {
+    void btnPlaceOrderAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Dashboard.fxml"))));
-        Stage stage1 = (Stage) btnOrderDetail.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/PlaceOrder.fxml"))));
+        Stage stage1 = (Stage) btnPlaceOrder.getScene().getWindow();
         stage1.close();
         stage.show();
         stage.setTitle("OrderDetail Management Page");

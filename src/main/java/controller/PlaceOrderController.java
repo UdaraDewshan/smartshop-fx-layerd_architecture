@@ -7,11 +7,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 public class PlaceOrderController {
 
     @FXML
     private Button btnAddToCart;
+
+    @FXML
+    private Button btnBack;
 
     @FXML
     private Button btnPlaceOrder;
@@ -64,7 +68,22 @@ public class PlaceOrderController {
     }
 
     @FXML
+    void btnBackAction(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnPlaceOrderAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void txtCustomerIDAction(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtItemCodeOnAction(KeyEvent event) {
 
     }
 

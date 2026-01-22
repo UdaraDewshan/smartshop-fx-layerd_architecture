@@ -1,6 +1,7 @@
 package repository.impl;
 
 import db.DBConnection;
+import model.dto.ItemDTO;
 import repository.ItemRepository;
 
 import javax.swing.*;
@@ -51,6 +52,45 @@ public class ItemRepositoryImpl implements ItemRepository{
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+
+    }
+
+    @Override
+    public ItemDTO searchItem(String id) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from item where ItemCode=?");
+        preparedStatement.setObject(1,id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()){
+            return new ItemDTO(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getDouble(4),
+                    resultSet.getInt(5)
+            );
+        }
+
+        return null;
+    }
+
+    @Override
+    public void updateItem(String itemCode, String description, String packSize, double unitPrice, int qtyOnHand) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("update item set Description=? , PackSize=?, UnitPrice=?, QtyOnHand=? where ItemCode=?");
+        preparedStatement.setObject(1,description);
+        preparedStatement.setObject(2,packSize);
+        preparedStatement.setObject(3,unitPrice);
+        preparedStatement.setObject(4,qtyOnHand);
+        preparedStatement.setObject(5,itemCode);
+        int i = preparedStatement.executeUpdate();
+
+        if (i>0){
+            JOptionPane.showMessageDialog(null, "updated Successfully!");
+        }else{
+            JOptionPane.showMessageDialog(null, "updated Unsuccessful!");
         }
 
     }
