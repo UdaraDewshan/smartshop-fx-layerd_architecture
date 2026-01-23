@@ -1,6 +1,7 @@
 package repository.impl;
 
 import db.DBConnection;
+import model.dto.CustomerDTO;
 import repository.CusromerRepository;
 
 import javax.swing.*;
@@ -75,5 +76,28 @@ public class CustomerRepositoryImpl implements CusromerRepository {
         Connection connection = DBConnection.getInstance().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("Select * From Customer");
         return preparedStatement.executeQuery();
+    }
+
+    @Override
+    public CustomerDTO searchCustomer(String id) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Customer WHERE CustID = ?");
+        preparedStatement.setObject(1,id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()){
+            return new CustomerDTO(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getDouble(5),
+                    resultSet.getString(6),
+                    resultSet.getString(7),
+                    resultSet.getString(8),
+                    resultSet.getString(9)
+            );
+        }
+        return null;
     }
 }

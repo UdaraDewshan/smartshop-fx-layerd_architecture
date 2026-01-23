@@ -34,7 +34,6 @@ public class WelcomePageController {
         st.setCycleCount(2);
         st.play();
 
-        Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Dashboard.fxml"))));
         Stage stage1 = (Stage) btnGo.getScene().getWindow();
         stage1.close();

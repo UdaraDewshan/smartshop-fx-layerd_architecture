@@ -8,13 +8,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.dto.ItemDTO;
-import service.impl.ItemServiseImpl;
+import service.impl.ItemServiceImpl;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -24,7 +25,7 @@ import java.util.ResourceBundle;
 public class ItemController implements Initializable {
 
     ObservableList<ItemDTO> itemDTOS = FXCollections.observableArrayList();
-    ItemServiseImpl itemServise = new ItemServiseImpl();
+    ItemServiceImpl itemServise = new ItemServiceImpl();
 
     @FXML
     private JFXButton btnBack;
@@ -32,11 +33,9 @@ public class ItemController implements Initializable {
     @FXML
     private JFXButton btnCustomer;
 
-    @FXML
-    private JFXButton btnOrderDetail;
 
     @FXML
-    private JFXButton btnOrderPage;
+    private JFXButton btnPlaceOrder;
 
     @FXML
     private TableColumn<?, ?> colDescription;
@@ -80,7 +79,7 @@ public class ItemController implements Initializable {
         colQtyOnHand.setCellValueFactory(new PropertyValueFactory<>("qtyOnHand"));
         tblItem.setItems(itemDTOS);
 
-        loadtable();
+        loadTable();
 
         tblItem.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
             if (newValue!=null){
@@ -95,9 +94,9 @@ public class ItemController implements Initializable {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
-        Double price = Double.valueOf(txtUnitPrice.getText());
+        double price = Double.parseDouble(txtUnitPrice.getText());
         itemServise.addItemDetails(txtId.getText(), txtDescription.getText(), txtPackSize.getText(),price, Integer.parseInt(txtQtyOnHand.getText()));
-        loadtable();
+        loadTable();
     }
 
     @FXML
@@ -116,6 +115,10 @@ public class ItemController implements Initializable {
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
+        clearText();
+    }
+
+    private void clearText() {
         txtPackSize.setText("");
         txtDescription.setText("");
         txtUnitPrice.setText("");
@@ -124,33 +127,58 @@ public class ItemController implements Initializable {
     }
 
     @FXML
-    void btnCustomerPageAction(ActionEvent event) {
-
+    void btnCustomerPageAction(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/CustomerPage.fxml"))));
+        Stage stage1 = (Stage) btnCustomer.getScene().getWindow();
+        stage1.close();
+        stage.show();
+        stage.setTitle("Customer Management Page");
     }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
         itemServise.deleteItemDetails(txtId.getText());
-        loadtable();
+        loadTable();
     }
 
-    @FXML
-    void btnOrderDetailAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnOrderPageAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-
+        double price = Double.parseDouble(txtUnitPrice.getText());
+        itemServise.updateItemDetails(txtId.getText(),txtDescription.getText(),txtPackSize.getText(),price, Integer.parseInt(txtQtyOnHand.getText()));
+        loadTable();
     }
 
-    private void loadtable(){
+    private void loadTable(){
         tblItem.setItems(itemServise.getAllItemDetails());
+    }
+
+    @FXML
+    void txtIdOnAction(ActionEvent event) {
+        String id = txtId.getText();
+        ItemDTO itemDTO = itemServise.searchItem(id);
+
+        if(itemDTO != null){
+            txtPackSize.setText(itemDTO.getPackSize());
+            txtDescription.setText(itemDTO.getDescription());
+            txtUnitPrice.setText(String.valueOf(itemDTO.getUnitPrice()));
+            txtId.setText(itemDTO.getCode());
+            txtQtyOnHand.setText(String.valueOf(itemDTO.getQtyOnHand()));
+        }else{
+            new Alert(Alert.AlertType.ERROR, "Item Not Found!").show();
+            clearText();
+        }
+    }
+
+    @FXML
+    void btnPlaceOrderAction(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/PlaceOrder.fxml"))));
+        Stage stage1 = (Stage) btnPlaceOrder.getScene().getWindow();
+        stage1.close();
+        stage.show();
+        stage.setTitle("PlaceOrder Management Page");
     }
 
 }

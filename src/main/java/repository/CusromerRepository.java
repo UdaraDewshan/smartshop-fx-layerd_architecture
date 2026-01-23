@@ -1,5 +1,7 @@
 package repository;
 
+import model.dto.CustomerDTO;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,5 +14,7 @@ public interface CusromerRepository {
     public void updateCustomer(String custID,String title,String name,String dob,double salary,String address,String city,String province,String postalCode) throws SQLException;
 
     public ResultSet getAllCustomers() throws SQLException;
+
+    public CustomerDTO searchCustomer(String id) throws SQLException;
 
 }

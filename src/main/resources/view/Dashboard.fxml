@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="541.0" prefWidth="650.0" style="-fx-background-color: linear-gradient(to bottom right, #0A84FF, #0047AB);" stylesheets="@../css/Dashboard.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
+<AnchorPane prefHeight="578.0" prefWidth="694.0" style="-fx-background-color: linear-gradient(to bottom right, #0A84FF, #0047AB);" stylesheets="@../css/Dashboard.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
 
    <Circle layoutX="322.0" layoutY="304.0" radius="110.0" stroke="transparent">
       <fill>
@@ -46,7 +46,7 @@
     </Text>
 
     <!-- FIRST ROW -->
-    <HBox layoutX="59.0" layoutY="110.0" prefWidth="566.0" spacing="30">
+    <HBox layoutX="59.0" layoutY="110.0" prefHeight="230.0" prefWidth="613.0" spacing="30">
 
         <!-- CUSTOMER -->
         <StackPane fx:id="cardCustomer">
@@ -73,7 +73,7 @@
                 <effect><DropShadow color="#00000055" radius="15" /></effect>
             </Rectangle>
 
-            <VBox alignment="CENTER" prefHeight="2.0" prefWidth="62.0" spacing="10">
+            <VBox alignment="CENTER" prefHeight="252.0" prefWidth="366.0" spacing="10">
                 <ImageView fitHeight="90.0" fitWidth="200.0">
                     <image><Image url="@../image/itemManagemrnt.png" /></image>
                 </ImageView>
@@ -89,51 +89,37 @@
     </HBox>
 
     <!-- SECOND ROW -->
-    <HBox layoutX="56.0" layoutY="330.0" prefWidth="538.0" spacing="30">
+    <HBox layoutX="194.0" layoutY="333.0" prefHeight="230.0" prefWidth="362.0" spacing="30">
 
         <!-- ORDER -->
-        <StackPane fx:id="cardOrder">
-            <Rectangle arcHeight="25" arcWidth="25" fill="#ffffff33" height="190" stroke="white" style="-fx-stroke-width: 0.5;" width="250">
-                <effect><DropShadow color="#00000055" radius="15" /></effect>
-            </Rectangle>
-
-            <VBox alignment="CENTER" spacing="10">
-                <ImageView fitHeight="90" fitWidth="200">
-                    <image><Image url="@../image/orderManagement.png" /></image>
-                </ImageView>
-
-                <Text fill="white" text="Order Management">
-                    <font><Font size="20" /></font>
-                </Text>
-
-                <Button fx:id="btnOrder" onAction="#btnOrderAction" styleClass="card-button" text="Open" />
-            </VBox>
-        </StackPane>
+        <StackPane fx:id="cardOrder" />
 
         <!-- ORDER DETAIL -->
         <StackPane fx:id="cardOrderDetail">
             <Rectangle arcHeight="25" arcWidth="25" fill="#ffffff33" height="190" stroke="white" style="-fx-stroke-width: 0.5;" width="250">
                 <effect><DropShadow color="#00000055" radius="15" /></effect>
             </Rectangle>
-
+   
             <VBox alignment="CENTER" spacing="10">
                 <ImageView fitHeight="90" fitWidth="200">
                     <image>
                   <Image url="@../image/orderDetailManagement.png" />
                </image>
                 </ImageView>
-
-                <Text fill="white" text="Order Detail Management">
-                    <font><Font size="20" /></font>
+   
+                <Text fill="white" text="Place Order">
+                    <font>
+                  <Font size="20" />
+               </font>
                 </Text>
-
-                <Button fx:id="btnOrderDetail" onAction="#btnOrderDetailAction" styleClass="card-button" text="Open" />
+   
+                <Button fx:id="btnPlaceOrder" onAction="#btnPlaceOrderAction" styleClass="card-button" text="Open" />
             </VBox>
         </StackPane>
 
     </HBox>
    <Line endX="100.0" layoutX="322.0" layoutY="65.0" startX="-100.0" />
    <CubicCurve controlX1="-30" controlX2="80" controlY1="-80" controlY2="90" endX="80.0" endY="-70.69999694824219" fill="transparent" layoutX="75.0" layoutY="45.0" startX="-133.48675537109375" startY="61.69999694824219" stroke="white" strokeWidth="2" />
-   <CubicCurve controlX1="-17.38409423828125" controlX2="80" controlY1="14.29998779296875" controlY2="90" endX="100.99993896484375" endY="-72.89996337890625" fill="transparent" layoutX="549.0" layoutY="498.0" startX="-51.784088134765625" startY="71.9000244140625" stroke="white" strokeWidth="2" />
+   <CubicCurve controlX1="-17.38409423828125" controlX2="80" controlY1="14.29998779296875" controlY2="90" endX="144.99993896484375" endY="-137.70001220703125" fill="transparent" layoutX="549.0" layoutY="498.0" startX="-51.784088134765625" startY="71.9000244140625" stroke="white" strokeWidth="2" />
 
 </AnchorPane>
