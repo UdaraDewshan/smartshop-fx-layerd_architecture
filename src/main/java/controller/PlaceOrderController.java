@@ -13,10 +13,13 @@ import javafx.stage.Stage;
 import model.dto.CartItem;
 import model.dto.CustomerDTO;
 import model.dto.ItemDTO;
+import model.dto.Orders;
+import service.PlaceOrderService;
 import service.impl.PlaceOrderServiceImpl;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class PlaceOrderController implements Initializable {
@@ -75,7 +78,10 @@ public class PlaceOrderController implements Initializable {
     @FXML
     private TextField txtQty;
 
-    PlaceOrderServiceImpl placeOrderService = new PlaceOrderServiceImpl();
+    @FXML
+    private TextField txtOrderId;
+
+    PlaceOrderService placeOrderService = new PlaceOrderServiceImpl();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -122,10 +128,6 @@ public class PlaceOrderController implements Initializable {
         stage.setTitle("Dashboard");
     }
 
-    @FXML
-    void btnPlaceOrderAction(ActionEvent event) {
-
-    }
 
     @FXML
     void txtCustomerIDAction(ActionEvent event) {
@@ -159,6 +161,16 @@ public class PlaceOrderController implements Initializable {
         txtPrice.setText("");
         txtQty.setText("");
         txtDiscount.setText("");
+    }
+
+    @FXML
+    void btnPlaceOrderAction(ActionEvent event) {
+
+        placeOrderService.placeOrder(new Orders(
+                txtOrderId.getText(),
+                LocalDate.now(),
+                txtCustomerID.getText().trim()
+        ),cartItems);
     }
 
 
