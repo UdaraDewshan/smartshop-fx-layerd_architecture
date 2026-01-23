@@ -6,6 +6,8 @@ import model.dto.CustomerDTO;
 import model.dto.ItemDTO;
 import model.dto.Orders;
 
+import java.sql.SQLException;
+
 public interface PlaceOrderService {
 
 
@@ -13,5 +15,5 @@ public interface PlaceOrderService {
 
     public ItemDTO getItem(String id);
 
-    public void placeOrder(Orders orders, ObservableList<CartItem> cartItems);
+    public void placeOrder(Orders orders, ObservableList<CartItem> cartItems) throws SQLException;
 }

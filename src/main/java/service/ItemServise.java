@@ -11,5 +11,5 @@ public interface ItemServise {
     public ObservableList<ItemDTO> getAllItemDetails();
     public ItemDTO searchItem(String id);
 
-    void updateItemQty(ObservableList<CartItem> cartItems);
+    public boolean updateItemQty(ObservableList<CartItem> cartItems);
 }

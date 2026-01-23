@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class OrderRepositoryImpl implements OrderRepository {
 
-    public void addOrder(Orders orders) throws SQLException {
+    public boolean addOrder(Orders orders) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "INSERT INTO orders VALUES(?,?,?)";
 
@@ -20,6 +20,6 @@ public class OrderRepositoryImpl implements OrderRepository {
         preparedStatement.setObject(2, orders.getOrderDate());
         preparedStatement.setObject(3, orders.getCustomerId());
 
-        preparedStatement.executeUpdate();
+        return preparedStatement.execute();
     }
 }

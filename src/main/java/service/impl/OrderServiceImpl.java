@@ -12,9 +12,9 @@ public class OrderServiceImpl implements OrderService {
     OrderRepository orderRepository = new OrderRepositoryImpl();
 
     @Override
-    public void addOrder(Orders orders) {
+    public boolean addOrder(Orders orders) {
         try {
-            orderRepository.addOrder(orders);
+            return orderRepository.addOrder(orders);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

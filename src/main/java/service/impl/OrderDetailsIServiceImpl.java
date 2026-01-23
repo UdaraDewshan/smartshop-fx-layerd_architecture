@@ -14,10 +14,13 @@ public class OrderDetailsIServiceImpl implements OrderDetailsService {
 
     OrderDetailsRepository orderDetailsRepository = new OrderDetailsRepositoryImpl();
     @Override
-    public void addOrder(Orders orders, ObservableList<CartItem> cartItems){
-        for (CartItem temp:cartItems){
+    public boolean addOrder(Orders orders, ObservableList<CartItem> cartItems) {
+
+        boolean isAdd = false;
+
+        for (CartItem temp : cartItems) {
             try {
-                orderDetailsRepository.addOrderDetails(
+                isAdd = orderDetailsRepository.addOrderDetails(
                         new OrderDetail(
                                 orders.getOrderId(),
                                 temp.getItemCode(),
@@ -25,12 +28,14 @@ public class OrderDetailsIServiceImpl implements OrderDetailsService {
                                 temp.getDiscount()
                         )
                 );
+                if (isAdd == false) {
+                    break;
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
         }
+        return isAdd;
 
     }
-
 }

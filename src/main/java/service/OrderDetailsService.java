@@ -5,5 +5,5 @@ import model.dto.CartItem;
 import model.dto.Orders;
 
 public interface OrderDetailsService {
-    public void addOrder(Orders orders, ObservableList<CartItem> cartItems);
+    public boolean addOrder(Orders orders, ObservableList<CartItem> cartItems);
 }

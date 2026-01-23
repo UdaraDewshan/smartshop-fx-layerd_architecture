@@ -19,6 +19,7 @@ import service.impl.PlaceOrderServiceImpl;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -154,8 +155,6 @@ public class PlaceOrderController implements Initializable {
     }
 
     void clearText(){
-        txtCustomerID.setText("");
-        txtCustomerName.setText("");
         txtItemCode.setText("");
         txtItemDescription.setText("");
         txtPrice.setText("");
@@ -164,12 +163,12 @@ public class PlaceOrderController implements Initializable {
     }
 
     @FXML
-    void btnPlaceOrderAction(ActionEvent event) {
+    void btnPlaceOrderAction(ActionEvent event) throws SQLException {
 
         placeOrderService.placeOrder(new Orders(
-                txtOrderId.getText(),
-                LocalDate.now(),
-                txtCustomerID.getText().trim()
+                    txtOrderId.getText(),
+                    LocalDate.now(),
+                    txtCustomerID.getText().trim()
         ),cartItems);
     }
 

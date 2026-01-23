@@ -68,15 +68,16 @@ public class ItemServiceImpl implements ItemServise{
     }
 
     @Override
-    public void updateItemQty(ObservableList<CartItem> cartItems) {
+    public boolean updateItemQty(ObservableList<CartItem> cartItems) {
         for (CartItem cartItem : cartItems) {
             try {
-                itemRepository.updateItemQty(cartItem.getItemCode(),cartItem.getQty());
+                return itemRepository.updateItemQty(cartItem.getItemCode(),cartItem.getQty());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
 
         }
+        return false;
     }
 
 }
