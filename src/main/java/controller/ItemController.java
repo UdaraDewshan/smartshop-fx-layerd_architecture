@@ -33,11 +33,9 @@ public class ItemController implements Initializable {
     @FXML
     private JFXButton btnCustomer;
 
-    @FXML
-    private JFXButton btnOrderDetail;
 
     @FXML
-    private JFXButton btnOrderPage;
+    private JFXButton btnPlaceOrder;
 
     @FXML
     private TableColumn<?, ?> colDescription;
@@ -144,15 +142,6 @@ public class ItemController implements Initializable {
         loadTable();
     }
 
-    @FXML
-    void btnOrderDetailAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnOrderPageAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
@@ -180,6 +169,16 @@ public class ItemController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Item Not Found!").show();
             clearText();
         }
+    }
+
+    @FXML
+    void btnPlaceOrderAction(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/PlaceOrder.fxml"))));
+        Stage stage1 = (Stage) btnPlaceOrder.getScene().getWindow();
+        stage1.close();
+        stage.show();
+        stage.setTitle("PlaceOrder Management Page");
     }
 
 }
