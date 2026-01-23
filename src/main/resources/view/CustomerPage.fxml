@@ -78,14 +78,7 @@
             </JFXButton>
 
             <!-- Orders -->
-            <JFXButton fx:id="btnOrderManagement" onAction="#btnOrderManagementAction" prefHeight="70" prefWidth="160" style="-fx-background-color: #1f1f1f; -fx-text-fill: white;                       -fx-font-size: 18; -fx-background-radius: 12;" text="Orders">
-                <font>
-                    <Font name="System Bold" size="18" />
-                </font>
-            </JFXButton>
-
-            <!-- Order Details -->
-            <JFXButton fx:id="btnOrderDetails" onAction="#btnOrderDetailsAction" prefHeight="70" prefWidth="180" style="-fx-background-color: #1f1f1f; -fx-text-fill: white;                       -fx-font-size: 18; -fx-background-radius: 12;" text="Order Details">
+            <JFXButton fx:id="btnPlaceOrder" onAction="#btnPlaceOrderAction" prefHeight="70" prefWidth="160" style="-fx-background-color: #1f1f1f; -fx-text-fill: white;                       -fx-font-size: 18; -fx-background-radius: 12;" text="PlaceOrder">
                 <font>
                     <Font name="System Bold" size="18" />
                 </font>

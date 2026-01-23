@@ -30,13 +30,11 @@ public class CustomerController implements Initializable {
     private JFXButton btnBack;
 
     @FXML
+    private JFXButton btnPlaceOrder;
+
+
+    @FXML
     private JFXButton btnItemManagement;
-
-    @FXML
-    private JFXButton btnOrderDetails;
-
-    @FXML
-    private JFXButton btnOrderManagement;
 
     @FXML
     private TableColumn<?, ?> colAddress;
@@ -185,33 +183,6 @@ public class CustomerController implements Initializable {
 
     }
 
-    @FXML
-    void btnOrderDetailsAction(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"));
-            Scene scene = new Scene(loader.load());
-            Stage stage = (Stage) btnBack.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("order Detail Management");
-            stage.show();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }
-
-    @FXML
-    void btnOrderManagementAction(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/"));
-            Scene scene = new Scene(loader.load());
-            Stage stage = (Stage) btnBack.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Order Management");
-            stage.show();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
@@ -253,6 +224,20 @@ public class CustomerController implements Initializable {
         }else {
             new Alert(Alert.AlertType.ERROR, "Customer Not Found!").show();
             clearTest();
+        }
+    }
+
+    @FXML
+    void btnPlaceOrderAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PlaceOrder.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) btnPlaceOrder.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("PlaceOrder Management");
+            stage.show();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 }
