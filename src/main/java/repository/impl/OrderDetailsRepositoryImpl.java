@@ -20,6 +20,6 @@ public class OrderDetailsRepositoryImpl implements OrderDetailsRepository {
         preparedStatement.setObject(3, orderDetail.getOrderQty());
         preparedStatement.setObject(4, orderDetail.getDiscount());
 
-        return preparedStatement.execute();
+        return preparedStatement.executeUpdate() > 0;
     }
 }

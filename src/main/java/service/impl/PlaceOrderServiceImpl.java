@@ -32,33 +32,33 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 
         try {
             connection.setAutoCommit(false);
+            boolean isAddOrder = orderService.addOrder(orders);
 
-            boolean  isAddOrder= orderService.addOrder(orders);
-
-            if (isAddOrder){
+            if (isAddOrder) {
                 boolean isAddOrderDetails = orderDetailsService.addOrder(orders, cartItems);
-                if (isAddOrderDetails){
+
+                if (isAddOrderDetails) {
                     boolean isAddItem = itemServise.updateItemQty(cartItems);
 
-                    if (isAddItem){
+                    if (isAddItem) {
                         connection.commit();
-                    }else {
+                    } else {
                         connection.rollback();
-                        throw new RuntimeException("Item qty not updated");
                     }
-
+                } else {
+                    connection.rollback();
                 }
+            } else {
+                connection.rollback();
             }
 
         } catch (SQLException e) {
             connection.rollback();
             throw new RuntimeException(e);
-
-        }finally {
+        } finally {
             connection.setAutoCommit(true);
         }
     }
-
 
 
 }

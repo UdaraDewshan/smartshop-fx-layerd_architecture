@@ -71,13 +71,15 @@ public class ItemServiceImpl implements ItemServise{
     public boolean updateItemQty(ObservableList<CartItem> cartItems) {
         for (CartItem cartItem : cartItems) {
             try {
-                return itemRepository.updateItemQty(cartItem.getItemCode(),cartItem.getQty());
+                boolean isUpdated = itemRepository.updateItemQty(cartItem.getItemCode(), cartItem.getQty());
+                if (!isUpdated) {
+                    return false;
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
         }
-        return false;
+        return true;
     }
 
 }

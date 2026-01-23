@@ -100,6 +100,7 @@ public class ItemRepositoryImpl implements ItemRepository{
         PreparedStatement preparedStatement = connection.prepareStatement("update item set QtyOnHand=QtyOnHand-? where ItemCode=?");
         preparedStatement.setInt(1,qty);
         preparedStatement.setString(2,itemCode);
-        return preparedStatement.execute();
+
+        return preparedStatement.executeUpdate() > 0;
     }
 }

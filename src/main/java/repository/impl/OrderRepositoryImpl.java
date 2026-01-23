@@ -20,6 +20,6 @@ public class OrderRepositoryImpl implements OrderRepository {
         preparedStatement.setObject(2, orders.getOrderDate());
         preparedStatement.setObject(3, orders.getCustomerId());
 
-        return preparedStatement.execute();
+        return preparedStatement.executeUpdate() > 0;
     }
 }
