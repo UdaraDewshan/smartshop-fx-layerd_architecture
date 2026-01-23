@@ -32,7 +32,7 @@ public class ItemServiceImpl implements ItemServise{
         try {
             itemRepository.updateItem(itemCode,description,packSize,unitPrice,qtyOnHand);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
     }
 
@@ -63,8 +63,9 @@ public class ItemServiceImpl implements ItemServise{
         try {
             return itemRepository.searchItem(id);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
+        return null;
     }
 
     @Override
@@ -76,7 +77,7 @@ public class ItemServiceImpl implements ItemServise{
                     return false;
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                JOptionPane.showMessageDialog(null,e.getMessage());
             }
         }
         return true;

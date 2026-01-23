@@ -2,6 +2,7 @@ package service.impl;
 
 import db.DBConnection;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import model.dto.CartItem;
 import model.dto.CustomerDTO;
 import model.dto.ItemDTO;
@@ -42,6 +43,7 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 
                     if (isAddItem) {
                         connection.commit();
+                        new Alert(Alert.AlertType.INFORMATION, "Order Placed Successfully!").show();
                     } else {
                         connection.rollback();
                     }
@@ -54,7 +56,7 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 
         } catch (SQLException e) {
             connection.rollback();
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR, "Failed to place order: " + e.getMessage()).show();
         } finally {
             connection.setAutoCommit(true);
         }
