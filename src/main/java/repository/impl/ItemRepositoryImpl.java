@@ -94,4 +94,12 @@ public class ItemRepositoryImpl implements ItemRepository{
         }
 
     }
+
+    public void updateItemQty(String itemCode, int qty) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("update item set QtyOnHand=QtyOnHand-? where ItemCode=?");
+        preparedStatement.setInt(1,qty);
+        preparedStatement.setString(2,itemCode);
+        preparedStatement.executeUpdate();
+    }
 }

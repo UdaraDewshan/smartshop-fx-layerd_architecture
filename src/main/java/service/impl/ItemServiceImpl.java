@@ -1,6 +1,7 @@
 package service.impl;
 
 import javafx.collections.ObservableList;
+import model.dto.CartItem;
 import model.dto.ItemDTO;
 import repository.impl.ItemRepositoryImpl;
 import service.ItemServise;
@@ -63,6 +64,18 @@ public class ItemServiceImpl implements ItemServise{
             return itemRepository.searchItem(id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void updateItemQty(ObservableList<CartItem> cartItems) {
+        for (CartItem cartItem : cartItems) {
+            try {
+                itemRepository.updateItemQty(cartItem.getItemCode(),cartItem.getQty());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
         }
     }
 

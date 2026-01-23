@@ -5,10 +5,7 @@ import model.dto.CartItem;
 import model.dto.CustomerDTO;
 import model.dto.ItemDTO;
 import model.dto.Orders;
-import service.CustomerService;
-import service.ItemServise;
-import service.OrderService;
-import service.PlaceOrderService;
+import service.*;
 
 public class PlaceOrderServiceImpl implements PlaceOrderService {
 
@@ -23,10 +20,15 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
         return itemServise.searchItem(id);
     }
 
-    public void placeOrder(Orders orders, ObservableList<CartItem> cartItems) {
-        OrderService orderService = new OrderServiceImpl();
-        orderService.addOrder(orders);
 
+    OrderService orderService = new OrderServiceImpl();
+    OrderDetailsService orderDetailsService = new OrderDetailsIServiceImpl();
+
+    public void placeOrder(Orders orders, ObservableList<CartItem> cartItems) {
+
+        orderService.addOrder(orders);
+        orderDetailsService.addOrder(orders, cartItems);
+        itemServise.updateItemQty(cartItems);
 
     }
 }
