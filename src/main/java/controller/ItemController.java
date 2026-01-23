@@ -133,7 +133,7 @@ public class ItemController implements Initializable {
         Stage stage1 = (Stage) btnCustomer.getScene().getWindow();
         stage1.close();
         stage.show();
-        stage.setTitle("Order Management Page");
+        stage.setTitle("Customer Management Page");
     }
 
     @FXML
